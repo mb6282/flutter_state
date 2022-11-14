@@ -42,9 +42,9 @@ class ABComponent extends StatefulWidget {
 class _ABComponentState extends State<ABComponent> {
   int num = 1;
 
-  void increase() {
+  void increase(int n) {
     setState(() {
-      num++;
+      num = num + n;
     });
   }
 
@@ -55,7 +55,7 @@ class _ABComponentState extends State<ABComponent> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Expanded(child: AComponent(num)),
-          Expanded(child: BComponent(increase)),
+          Expanded(child: BComponent((n) => increase(n))),
         ],
       ),
     );
@@ -104,7 +104,7 @@ class BComponent extends StatelessWidget {
             child: Align(
               child: ElevatedButton(
                 onPressed: () {
-                  increase();
+                  increase(3);
                 },
                 child: Text(
                   "숫자증가",
