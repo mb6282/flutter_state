@@ -15,14 +15,32 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class HomePage extends StatefulWidget {
+class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 1000,
+      child: Scaffold(
+        body: Row(
+          children: [
+            Expanded(child: ABComponent()),
+            Expanded(child: CComponent()),
+          ],
+        ),
+      ),
+    );
+  }
 }
 
-class _HomePageState extends State<HomePage> {
+class ABComponent extends StatefulWidget {
+  const ABComponent({Key? key}) : super(key: key);
+  @override
+  State<ABComponent> createState() => _ABComponentState();
+}
+
+class _ABComponentState extends State<ABComponent> {
   int num = 1;
 
   void increase() {
@@ -34,7 +52,8 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     double size = MediaQuery.of(context).size.width;
-    double screenSize = size * 0.8;
+    double ABsize = size * 0.8;
+    double Csize = size * 0.2;
     return Scaffold(
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -100,6 +119,17 @@ class BComponent extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class CComponent extends StatelessWidget {
+  const CComponent({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.green,
     );
   }
 }
