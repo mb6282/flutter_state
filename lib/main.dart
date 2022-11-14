@@ -17,18 +17,17 @@ class MyApp extends StatelessWidget {
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 1000,
-      child: Scaffold(
-        body: Row(
-          children: [
-            Expanded(child: ABComponent()),
-            Expanded(child: CComponent()),
-          ],
-        ),
+    double size = MediaQuery.of(context).size.width;
+    double ABsize = size * 0.6;
+    double Csize = size * 0.4;
+    return Scaffold(
+      body: Row(
+        children: [
+          SizedBox(width: ABsize, child: ABComponent()),
+          SizedBox(width: Csize, child: CComponent()),
+        ],
       ),
     );
   }
@@ -51,9 +50,6 @@ class _ABComponentState extends State<ABComponent> {
 
   @override
   Widget build(BuildContext context) {
-    double size = MediaQuery.of(context).size.width;
-    double ABsize = size * 0.8;
-    double Csize = size * 0.2;
     return Scaffold(
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
